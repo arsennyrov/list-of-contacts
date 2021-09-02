@@ -20,12 +20,14 @@ export default class SearchPanel extends Component {
     render() {
 
         return (
+
             <input
                 className="form-control search-input"
                 type="text"
                 placeholder="Поиск по списку"
                 onChange={this.onUpdateSearch}
             />
+
         )
     
     }

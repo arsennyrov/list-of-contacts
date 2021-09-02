@@ -26,7 +26,7 @@ const PostList = ({posts, onDelete, onToggleImportant,
     return (
         <>
 
-      <div id='head=list' className="app-list-item d-flex justify-content-between">
+      <div id='head-list' className="app-list-item d-flex justify-content-between">
         <span className=" header-name"
         onClick={nameItem}>Name</span>
 

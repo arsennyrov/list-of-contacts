@@ -6,7 +6,7 @@ export default class PostListItem extends Component {
 
 
   render() {
-    const { name, phone, email, comment, onDelete, onToggleImportant, 
+    const { name, phone, email, comment, onDelete,
             nameItem, phoneItem, emailItem, commentItem } = this.props;
 
     return (

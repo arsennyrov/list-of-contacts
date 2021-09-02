@@ -22,7 +22,22 @@ export default class App extends Component {
                         email: 'cccccc-aaaa@ru', 
                         comment: 'перезвонить во вторник!',
                         id: '2'},
-                {name: 'Сидоров С.С.', 
+                {name: 'Сидорова С.С.', 
+                        phone: '8-928-555-66-77', 
+                        email: 'dddd-aaaa@ru', 
+                        comment: '',
+                        id: '3'},
+                {name: 'Ливанов Л.И.', 
+                        phone: '8-928-111-22-33', 
+                        email: 'aaaaeee@ru', 
+                        comment: 'Он',
+                        id: '1'},
+                {name: 'Серова П.П.', 
+                        phone: '8-928-111-33-44', 
+                        email: 'cccccc-aaaa@ru', 
+                        comment: 'перезвонить во вторник!',
+                        id: '2'},
+                {name: 'Котов С.С.', 
                         phone: '8-928-555-66-77', 
                         email: 'dddd-aaaa@ru', 
                         comment: '',
@@ -34,15 +49,12 @@ export default class App extends Component {
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
-        this.onToggleImportant = this.onToggleImportant.bind(this);
         this.nameItem = this.nameItem.bind(this);
         this.phoneItem = this.phoneItem.bind(this);
         this.emailItem = this.emailItem.bind(this);
         this.commentItem = this.commentItem.bind(this); 
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
-/*         this.onToggle = this.onToggle.bind(this); */
-
         this.maxId = 4;
 
     };
@@ -73,10 +85,6 @@ export default class App extends Component {
                 data: newArr
             }
        })
-    }
-
-    onToggleImportant(id) {
-        alert(id);
     }
 
     nameItem(id) {
@@ -178,7 +186,6 @@ export default class App extends Component {
                  <PostList
                      posts={visiblePosts}
                      onDelete={this.deleteItem}
-                     onToggleImportant={this.onToggleImportant}
                      nameItem={this.nameItem}
                      phoneItem={this.phoneItem}
                      emailItem={this.emailItem}

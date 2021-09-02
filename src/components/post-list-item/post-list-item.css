@@ -50,10 +50,6 @@
 	color: hsl(36, 100%, 50%);
 }
 
-.app-list-item.important .btn-star {
-	color: #aeaeae;
-}
-
 .app-list-item.trash .app-list-item-label {
 	text-decoration: line-through;
 }
@@ -77,9 +73,3 @@
 	font-style: italic;
 	color: #555;
 }
-
-.head-list {
-	padding-bottom: 2px;
-	background-color: rgb(161, 214, 245);
-}
-

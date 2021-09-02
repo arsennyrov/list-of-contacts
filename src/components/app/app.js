@@ -15,18 +15,18 @@ export default class App extends Component {
                 {name: 'Иванов И.И.', 
                         phone: '8-928-111-22-33', 
                         email: 'aaaaeee@ru', 
-                        comment: '',
-                        important: false, like: false, id: '1'},
+                        comment: 'Нужный человек',
+                        id: '1'},
                 {name: 'Петров П.П.', 
                         phone: '8-928-111-33-44', 
                         email: 'cccccc-aaaa@ru', 
-                        comment: '',
-                        important: true, like: false, id: '2'},
+                        comment: 'перезвонить во вторник!',
+                        id: '2'},
                 {name: 'Сидоров С.С.', 
                         phone: '8-928-555-66-77', 
                         email: 'dddd-aaaa@ru', 
                         comment: '',
-                        important: false, like: false, id: '3'},
+                        id: '3'},
 
             ],
             term: '',
@@ -35,21 +35,24 @@ export default class App extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
-        this.onToggleLiked = this.onToggleLiked.bind(this);
+        this.nameItem = this.nameItem.bind(this);
+        this.phoneItem = this.phoneItem.bind(this);
+        this.emailItem = this.emailItem.bind(this);
+        this.commentItem = this.commentItem.bind(this); 
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
-        this.onToggle = this.onToggle.bind(this);
+/*         this.onToggle = this.onToggle.bind(this); */
 
         this.maxId = 4;
 
     };
 
+    
     deleteItem(id) {
        this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id);
      
             const newArr = [...data.slice(0, index), ...data.slice(index+1)];
-
             return {
                 data: newArr
             }
@@ -73,28 +76,55 @@ export default class App extends Component {
     }
 
     onToggleImportant(id) {
-        this.onToggle(id, 'important');
+        alert(id);
     }
 
-    onToggleLiked(id) {
-     /*    this.onToggle(id, 'like'); */
-     debugger;
-     alert(this.state.data[id-1].name);
-    }
-
-    onToggle(id, flag) {
+    nameItem(id) {
+        let result = prompt(this.state.data[id-1].name, this.state.data[id-1].name);
         this.setState(({data}) => {
-            const index = data.findIndex(elem  => elem.id === id );
-            const old = data[index];
-            const newArr = [...data.slice(0, index), 
-                (flag === 'like') ? 
-                {...old, like: !old.like} :
-                {...old, important: !old.important}
-                , ...data.slice(index+1)];
+            const newArr = data;  
+            newArr[id-1].name = result;
             return {
                 data: newArr
             }
-        });
+       });
+    }
+
+    phoneItem(id) {
+        let result = prompt(this.state.data[id-1].phone, this.state.data[id-1].phone);
+        this.setState(({data}) => {
+            const newArr = data;  
+            newArr[id-1].phone = result;
+            return {
+                data: newArr
+            }
+       });    }
+
+    emailItem(id) {
+        let result = prompt(this.state.data[id-1].email, this.state.data[id-1].email);
+        if (!result.includes("@")) {
+            alert('Наберите Email правильно');
+            return;
+        }
+
+        this.setState(({data}) => {
+            const newArr = data;  
+            newArr[id-1].email = result;
+            return {
+                data: newArr
+            }
+       });
+    }
+
+    commentItem(id) {
+        let result = prompt(this.state.data[id-1].comment, this.state.data[id-1].comment);
+        this.setState(({data}) => {
+            const newArr = data;  
+            newArr[id-1].comment = result;
+            return {
+                data: newArr
+            }
+       });
     }
 
     searchPost(items, term) {
@@ -143,15 +173,16 @@ export default class App extends Component {
                  <div className="search-panel d-flex">
                      <SearchPanel
                      onUpdateSearch={this.onUpdateSearch}/>
-{/*                      <PostStatusFilter
-                     filter={filter}
-                     onFilterSelect={this.onFilterSelect} /> */}
+
                  </div>
                  <PostList
                      posts={visiblePosts}
                      onDelete={this.deleteItem}
                      onToggleImportant={this.onToggleImportant}
-                     onToggleLiked={this.onToggleLiked}
+                     nameItem={this.nameItem}
+                     phoneItem={this.phoneItem}
+                     emailItem={this.emailItem}
+                     commentItem={this.commentItem}
                     />
                  <PostAddForm
                     onAdd={this.addItem}/>

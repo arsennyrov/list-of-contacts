@@ -79,8 +79,7 @@ export default class PostAddForm extends Component {
                     value={this.state.phone}
                 />
                 <input
-                    /* type="text" */
-                    required type="email"
+                    type="email"
                     placeholder="Введите Email"
                     className="form-control new-post-label"
                     onChange={this.onEmailChange}

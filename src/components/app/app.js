@@ -27,21 +27,21 @@ export default class App extends Component {
                         email: 'dddd-aaaa@ru', 
                         comment: '',
                         id: '3'},
-                {name: 'Ливанов Л.И.', 
+                {name: 'Ливанов И.И.', 
                         phone: '8-928-111-22-33', 
                         email: 'aaaaeee@ru', 
                         comment: 'Он',
-                        id: '1'},
+                        id: '4'},
                 {name: 'Серова П.П.', 
                         phone: '8-928-111-33-44', 
                         email: 'cccccc-aaaa@ru', 
                         comment: 'перезвонить во вторник!',
-                        id: '2'},
+                        id: '5'},
                 {name: 'Котов С.С.', 
                         phone: '8-928-555-66-77', 
                         email: 'dddd-aaaa@ru', 
                         comment: '',
-                        id: '3'},
+                        id: '6'},
 
             ],
             term: '',
@@ -136,24 +136,12 @@ export default class App extends Component {
     }
 
     searchPost(items, term) {
-        if (term.length ===0) {
+        if (term.length === 0) {
             return items
         }
-
-        return items.filter((item) => {
-            if (item.name.indexOf(term) > -1) {
-                return item.name.indexOf(term)
-            }
-            if (item.phone.indexOf(term) > -1) {
-                return item.name.indexOf(term)
-            }
-            if (item.email.indexOf(term) > -1) {
-                return item.name.indexOf(term)
-            }
-            if (item.comment.indexOf(term) > -1) {
-                return item.name.indexOf(term)
-            }
-        });
+         return items.filter((item) => {
+            return item.name.indexOf(term) > -1;
+        }); 
     }
 
     filterPost(items, filter) {
@@ -161,6 +149,7 @@ export default class App extends Component {
     }
 
     onUpdateSearch(term) {
+        console.log(term);
         this.setState({term})
     }
 
@@ -169,10 +158,10 @@ export default class App extends Component {
     }
 
     render() {
-        const {data, term, filter} = this.state;
+        const { data, term } = this.state;
         const allPosts = data.length;
 
-        const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
+        const visiblePosts = this.searchPost(data, term);
 
         return (
             <div className="app">

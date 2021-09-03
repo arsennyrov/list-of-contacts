@@ -89,7 +89,7 @@ export default class App extends Component {
         this.commentItem = this.commentItem.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
-        this.maxId = 4;
+        this.maxId = 9;
 
     };
 

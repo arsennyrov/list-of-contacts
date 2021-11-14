@@ -1,27 +1,35 @@
 import React from 'react';
-
 import PostListItem from '../post-list-item';
 import './post-list.css';
 
-const PostList = ({posts, onDelete, onToggleImportant, 
-                   nameItem, phoneItem, emailItem, commentItem }) => {
+const PostList = ({posts, onToggleImportant, 
+                   nameItem, phoneItem, emailItem, commentItem, 
+                   onAdd, onDel, data, term, filter }) => {
 
-    const elements = posts.map((item) => {
-        const {id,  ...itemProps} = item;
+    const elements = posts.map((item, index ) => {
+   
+ 
         return (
-            <li key={id} className='list-group-item'>
+            <li key={index} 
+                className='list-group-item'
+                onClick = {(e) => {
+                    if (e.target.id === 'ii') {
+                    onDel(index)
+                }} }
+                >
               <PostListItem 
-                    {...itemProps}
-                    onDelete={() => onDelete(id)}
-                    onToggleImportant={() => onToggleImportant(id)}
-                    nameItem={() => nameItem(id)} 
-                    phoneItem={() => phoneItem(id)} 
-                    emailItem={() => emailItem(id)} 
-                    commentItem={() => commentItem(id)} 
+
+                    { ...item }
+                    onToggleImportant={() => onToggleImportant(index)}
+                    nameItem={() => nameItem(index)} 
+                    phoneItem={() => phoneItem(index)} 
+                    emailItem={() => emailItem(index)} 
+                    commentItem={() => commentItem(index)} 
                     />
             </li>
         )
     });
+
 
     return (
         <>
@@ -40,7 +48,6 @@ const PostList = ({posts, onDelete, onToggleImportant,
             onClick={commentItem}>Comment</span>
         </div>
 
-
         <ul className = "app-list list-group">
             {elements}
         </ul>
@@ -49,3 +56,4 @@ const PostList = ({posts, onDelete, onToggleImportant,
 }
 
 export default PostList;
+

@@ -42,18 +42,24 @@ export default class PostAddForm extends Component {
         })
     }
 
-     onSubmit = (e) => {
+    onSubmit(e) {
         e.preventDefault();
-        this.props.onAdd();
-        console.log('submit:', this.props);
-/*         this.props.onMaxId();  */
+        this.props.onAdd(
+            this.state.name,
+            this.state.phone,
+            this.state.email,
+            this.state.comment
+        );
+
+        this.setState({
+            name: '',
+            phone: '',
+            email: '',
+            comment: ''
+        });
     }
 
-    //***************************************** */
     render() {
-        
-console.log('form:', this.props);
-
         return (
             <>
                 <form className="bottom-panel d-flex"
